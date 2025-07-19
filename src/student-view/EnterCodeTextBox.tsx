@@ -1,11 +1,13 @@
-import { SetStateAction, useState } from 'react'
-import { useAsyncValue } from 'react-router-dom';
+import { SetStateAction, useState, useContext } from 'react'
+import { useAsyncValue, Link } from 'react-router-dom';
+import { UserContext } from "./UserContext"
 
 export default function() {
     const EMPTY_FIELD_TEXT = "Enter Room Code!";
     const CODE_LENGTH = 6;
     const [text, setText] = useState<string>("");
     const [codeStatus, setCodeStatus] = useState<"TYPING" | "READY" | "LOADING" | "INCORRECT">("TYPING")
+    const {setRoomCode} = useContext(UserContext);
 
     const BUTTON_COLORS = {
         "TYPING" : "bg-gray-400",
@@ -53,6 +55,7 @@ export default function() {
 
             const data = await res.json();
             if (data.redirectUrl) {
+                setRoomCode(text)
                 window.location.href = data.redirectUrl;
             }
 
@@ -67,17 +70,24 @@ export default function() {
     return (
         <div className="flex flex-col gap-2 items-center w-[500px] h-[200px]">
 
-            <input className="bg-gray-600 rounded-lg centered text-center text-gray-300 w-full text-4xl h-[70px]"
+            <input className="bg-gray-600 rounded-lg centered text-center text-gray-300 w-full text-4xl h-[70px] font-mono"
             value={text}
             placeholder={EMPTY_FIELD_TEXT}
             onChange={keyPressed}/>
 
             <button 
-            className={`${BUTTON_COLORS[codeStatus]} h-[60px] text-3xl px-10`}
+            className={`flex items-center justify-center ${BUTTON_COLORS[codeStatus]} h-[60px] text-3xl px-10 font-bold items-center`}
             onClick={codeSubmitted}
             disabled={text.length !== CODE_LENGTH}>
                 JOIN ROOM!
             </button>
+
+            <Link
+            className="text-blue-200 text-base"
+            to='/teacher/create-room'
+            >
+                Looking to create a room instead?
+            </Link>
         </div>
     )
 }

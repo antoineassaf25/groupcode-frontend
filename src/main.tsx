@@ -1,12 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
 import './index.css'
-import Profiles from './Profiles'
-import NotFoundPage from './NotFoundPage'
-import Profile from './Profile'
-
-
+import CreateRoom from './teacher-view/CreateRoom'
 import JoinRoom from './student-view/JoinRoom'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -16,6 +11,10 @@ const router = createBrowserRouter([
   {
     path : '/',
     element: <JoinRoom/>
+  },
+  {
+    path : 'teacher/create-room',
+    element: <CreateRoom/>
   }
   // {
   //   path : '/',

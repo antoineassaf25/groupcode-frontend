@@ -1,4 +1,4 @@
-.student-page {
+.teacher-page {
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
@@ -7,8 +7,8 @@
 
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
-    background-color: #5380fd;
 
+    background-color: #fd5378;
     display: flex;
     align-items:center;
     justify-content: center;

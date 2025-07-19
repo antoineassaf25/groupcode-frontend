@@ -9,16 +9,18 @@ function JoinRoom() {
     const [score, setScore] = useState(0);
 
     return (
-        <UserContext.Provider value={{
-            username,
-            setUsername,
-            roomCode,
-            setRoomCode,
-            score,
-            setScore
-            }}>
+        <div className="student-page">
+            <UserContext.Provider value={{
+                username,
+                setUsername,
+                roomCode,
+                setRoomCode,
+                score,
+                setScore
+                }}>
             <EnterCodeTextBox/>
-        </UserContext.Provider>
+            </UserContext.Provider>
+        </div>
     )
 }
 
